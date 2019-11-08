@@ -57,3 +57,5 @@ class Data:
 
 mainCall = Data('Oil.csv', 'Earthquakes.csv')
 Data.data_loader(mainCall)
+
+print('test')
