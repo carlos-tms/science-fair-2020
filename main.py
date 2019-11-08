@@ -54,6 +54,9 @@ class Data:
             for row in oil_reader:
                 oil_production_a.append(row[5])
 
+        print(oil_header)
+        print(eq_header)
+
 
 mainCall = Data('Oil.csv', 'Earthquakes.csv')
 Data.data_loader(mainCall)
