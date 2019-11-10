@@ -37,28 +37,32 @@ class Data:
 
         # -- IMPORTS
         import csv
-
+        from conversions import twh_conversion
         # -- DATA LOADING
 
         # Earthquake Data
         with open(self.earthFile) as f:
-            earth_reader = csv.reader(f)
-            eq_header = next(earth_reader)
+            reader = csv.reader(f)
+            eq_header = next(reader)
+
+            # Columns to be loaded, (1, 5, 14)
 
         # Oil Data
         with open(self.oilFile) as f:
-            oil_reader = csv.reader(f)
-            oil_header = next(oil_reader)
+            reader = csv.reader(f)
 
-            oil_production_a = []
-            for row in oil_reader:
-                oil_production_a.append(row[5])
+            oil_prod_amt, oil_prod_date = [], []
+            for line in reader:
+                if line[1] == 'USA':
+                    oil_prod_date.append(line[2])
 
-        print(oil_header)
-        print(eq_header)
+                    oil_prod = line[4]
+                    oil_prod_amt.append(twh_conversion(float(oil_prod)))
+
+        # TEST
+        # print(oil_prod_date)
+        # print(oil_prod_amt)
 
 
 mainCall = Data('Oil.csv', 'Earthquakes.csv')
 Data.data_loader(mainCall)
-
-print('test')
