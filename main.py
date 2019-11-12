@@ -10,7 +10,7 @@ class Data:
         self.oilFile = oil_file
         self.earthFile = earth_file
 
-        self.oilProduction = []
+        self.oil_data = []
         self.earthPlace = []
         self.magnitudesOverFour = []
         self.allMagnitudes = []
@@ -59,8 +59,8 @@ class Data:
                     oil_prod = line[4]
                     oil_prod_amt.append(twh_conversion(float(oil_prod)))
 
-        self.oilProduction.append(oil_prod_amt)
-        self.oilProduction.append(oil_prod_date)
+        self.oil_data.append(oil_prod_amt)
+        self.oil_data.append(oil_prod_date)
 
         # TEST
         # print(oil_prod_date)
