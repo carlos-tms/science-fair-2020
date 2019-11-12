@@ -59,6 +59,9 @@ class Data:
                     oil_prod = line[4]
                     oil_prod_amt.append(twh_conversion(float(oil_prod)))
 
+        self.oilProduction.append(oil_prod_amt)
+        self.oilProduction.append(oil_prod_date)
+
         # TEST
         # print(oil_prod_date)
         # print(oil_prod_amt)
