@@ -59,6 +59,19 @@ class Data:
             Oil:
             Loaded Rows: 1, 2, 4
             Cells loaded: 228
+            
+            Actions:
+                1. Check if country code is 'USA', if so, continue operation and skip over all other countries.
+                2. Append the year to list 'oil_data_date'
+                3. Grab the value for oil located in column 4, then pass it through 'twh_conversion'
+                
+                    # The conversion is made to better analyze the ACTUAL amount of oil produced, since the recorded
+                      value is in tWh (Terra-watt-hours) and to better understand how much was produced, I pass it
+                      through the mathematical conversion of [tWh * 614175.1627564]; then for visualization purposes,
+                      round the value to the nearest whole number.
+                      
+                4. Pass all values to 'data_test' : FINISH
+                
         """
 
         # Earthquakes
@@ -86,30 +99,24 @@ class Data:
         Checks for any value errors, then after human approval, will allow the data to be visualized (by changing
         'can_visualize' from False to True)
         """
-        vis = 0
+
         print('** OIL DATA')
         for x, y in zip(self.oil_data_amt, self.oil_data_date):
             print('\nAmt: ' + x)
             print('Date: ' + y)
 
-        oil_approval = input('\nIs data ok? y/n ')
+        oil_approval = raw_input('\nIs data ok? y/n ')
 
         print('\n** EARTHQUAKE DATA')
         for x, y in zip(self.earth_data_date, self.earth_data_mag):
             print('\nMag: ' + str(y))
             print('Date: ' + str(x))
 
-        earthquake_approval = input('\nIs data ok? y/n ')
+        earthquake_approval = raw_input('\nIs data ok? y/n ')
 
-        if earthquake_approval is 'y':
-            vis += 1
-            if oil_approval is 'y':
-                vis += 1
-                if vis == 2:
-                    self.can_vis = True
-                    print('** READY FOR VISUALIZATION')
-            else:
-                print('** ERROR: Data not ready for vis')
+        if earthquake_approval == 'y' and oil_approval == 'y':
+            self.can_vis = True
+            print('** READY FOR VISUALIZATION')
         else:
             print('** ERROR: Data not ready for vis')
 
