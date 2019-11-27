@@ -43,7 +43,7 @@ class Data:
 
         # -- IMPORTS
         import csv
-        from conversions import twh_conversion
+        from algorithms import twh_conversion
 
         """
         Data Loading Specifics
@@ -104,15 +104,19 @@ class Data:
         for x, y in zip(self.oil_data_amt, self.oil_data_date):
             print('\nAmt: ' + x)
             print('Date: ' + y)
-
-        oil_approval = raw_input('\nIs data ok? y/n ')
+        try:
+            oil_approval = raw_input('\nIs data ok? y/n ')
+        except NameError:
+            oil_approval = input('\nIs data ok? y/n ')
 
         print('\n** EARTHQUAKE DATA')
         for x, y in zip(self.earth_data_date, self.earth_data_mag):
             print('\nMag: ' + str(y))
             print('Date: ' + str(x))
-
-        earthquake_approval = raw_input('\nIs data ok? y/n ')
+        try:
+            earthquake_approval = raw_input('\nIs data ok? y/n ')
+        except NameError:
+            earthquake_approval = input('\nIs data ok? y/n ')
 
         if earthquake_approval == 'y' and oil_approval == 'y':
             self.can_vis = True
