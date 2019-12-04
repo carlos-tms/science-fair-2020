@@ -1,16 +1,32 @@
+
+# --- Main ---
+#
+# Version 1.0 // 12-3-2019
+#
+# By Carlos Miller
+
+
 class Data:
     """
-    data()
+    data:
+    data_load, data_process, data_compile
 
-    The backbone and housing for all data related code, only data
-    loading and processing will occur in this class.
+    oil_file; the name of the CSV file with USA Annual Crude Oil Production Data
+    earth_file; the name of the CSV file with Earthquake data
+    is_interactive; tells the program to either run interactively or not, with this being False it will run with
+                    default settings, and no input points. Will only print needed info when the operation is
+                    complete.
+
+    Creates a nicely packaged list, featuring processed data ready for visualization.
+
     """
 
-    def __init__(self, oil_file, earth_file):
+    def __init__(self, oil_file, earth_file, is_interactive):
         self.oilFile = oil_file
         self.earthFile = earth_file
 
         self.can_vis = False
+        self.interactive = is_interactive
 
         # OIL DATA STORAGE VAR
         self.oil_data_amt = []
@@ -19,7 +35,6 @@ class Data:
         # EARTHQUAKE DATA STORAGE VAR
         self.earth_data_mag = []
         self.earth_data_date = []
-        self.allMagnitudes = []
 
         self.earthquakes = {
             'new mexico': [],
@@ -49,28 +64,26 @@ class Data:
         Data Loading Specifics
             
             Earthquakes:
-            Loaded Rows: 0, 4, 13
-            Cells loaded: 8757
+            Loaded rows: 0, 4, 13
+            Cells loaded: 8757 
+            ## NOTICE - Cells Loaded; May increase upon final version, as the earthquake data set will be updated to
+                                      its latest version. 
             
             Actions:
                 1. Check if location is within defined list, 'key_areas' if so, continue operation.
-                2. Append magnitude to
+                2. Append magnitude to list 'earth_data_mag'
+                3. Append raw time of earthquake to list 'earth_data_date'
+                4. Pass all values to 'data_process' : FINISH
             
             Oil:
-            Loaded Rows: 1, 2, 4
+            Loaded rows: 1, 2, 4
             Cells loaded: 228
             
             Actions:
                 1. Check if country code is 'USA', if so, continue operation and skip over all other countries.
                 2. Append the year to list 'oil_data_date'
-                3. Grab the value for oil located in column 4, then pass it through 'twh_conversion'
-                
-                    # The conversion is made to better analyze the ACTUAL amount of oil produced, since the recorded
-                      value is in tWh (Terra-watt-hours) and to better understand how much was produced, I pass it
-                      through the mathematical conversion of [tWh * 614175.1627564]; then for visualization purposes,
-                      round the value to the nearest whole number.
-                      
-                4. Pass all values to 'data_test' : FINISH
+                3. Grab the value for oil located in column 4, then pass it through 'twh_conversion'   
+                4. Pass all values to 'data_process' : FINISH
                 
         """
 
@@ -91,6 +104,12 @@ class Data:
                 if line[1] == 'USA':
                     self.oil_data_date.append(line[2])
                     self.oil_data_amt.append(twh_conversion(float(line[4])))
+
+    def data_process(self):
+        """
+        data_process, ## DOCUMENTATION COMING SOON
+        """
+        pass
 
     def data_test(self):
         """
@@ -125,6 +144,6 @@ class Data:
             print('** ERROR: Data not ready for vis')
 
 
-mainCall = Data('Oil.csv', 'Earthquakes.csv')
+mainCall = Data('Oil.csv', 'Earthquakes.csv', None)
 Data.data_load(mainCall)
 Data.data_test(mainCall)
