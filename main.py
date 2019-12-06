@@ -144,6 +144,10 @@ class Data:
             print('** ERROR: Data not ready for vis')
 
 
-mainCall = Data('Oil.csv', 'Earthquakes.csv', None)
-Data.data_load(mainCall)
-Data.data_test(mainCall)
+def app_main():
+    main_call = Data('Oil.csv', 'Earthquakes.csv', None)
+    Data.data_load(main_call)
+    Data.data_test(main_call)
+
+
+app_main()
