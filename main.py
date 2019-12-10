@@ -58,7 +58,6 @@ class Data:
 
         # -- IMPORTS
         import csv
-        from algorithms import twh_conversion
 
         """
         Data Loading Specifics
@@ -103,12 +102,34 @@ class Data:
             for line in reader:
                 if line[1] == 'USA':
                     self.oil_data_date.append(line[2])
-                    self.oil_data_amt.append(twh_conversion(float(line[4])))
+                    self.oil_data_amt.append(line[4])
 
     def data_process(self):
         """
         data_process, ## DOCUMENTATION COMING SOON
         """
+
+        def oil_process():
+
+            from algorithms import twh_conversion
+
+            for value in self.oil_data_amt:
+                twh_conversion(float(value))
+
+            # Strip time from date list, append them all to oil_data as a final list
+
+        if self.interactive:
+            prompt = '\n** DATA PROCESS **'
+            prompt += '\nWould you like to process Oil (o) or Earthquake (e) or All (a) data? '
+
+            # input var here
+            # placeholder...
+            user_input = None
+            # ...
+
+            if user_input == 'o':
+                oil_process()
+
         pass
 
     def data_test(self):
