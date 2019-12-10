@@ -18,6 +18,7 @@ def standard_deviation(List):
 
     from math import sqrt
     u = average(List)
+    top = 0
 
     for x in List:
         top = abs(x - u)**2
