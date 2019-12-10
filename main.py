@@ -36,13 +36,13 @@ class Data:
         self.earth_data_mag = []
         self.earth_data_date = []
 
-        self.earthquakes = {
-            'new mexico': [],
-            'california': [],
-            'oklahoma': [],
-            'texas': [],
-            'other': []
-        }
+        # self.earthquakes = {
+        #    'new mexico': [],
+        #    'california': [],
+        #    'oklahoma': [],
+        #    'texas': [],
+        #    'other': []
+        # }
 
         self.keyAreas = [
             "California", "CA", "New Mexico", "NM", "Oklahoma", "OK",
