@@ -1,7 +1,7 @@
 
 # --- Main ---
 #
-# Version 1.0 // 12-3-2019
+# Version 1.1 // 12-10-2019
 #
 # By Carlos Miller
 
@@ -36,13 +36,13 @@ class Data:
         self.earth_data_mag = []
         self.earth_data_date = []
 
-        self.earthquakes = {
-            'new mexico': [],
-            'california': [],
-            'oklahoma': [],
-            'texas': [],
-            'other': []
-        }
+        # self.earthquakes = {
+        #    'new mexico': [],
+        #    'california': [],
+        #    'oklahoma': [],
+        #    'texas': [],
+        #    'other': []
+        # }
 
         self.keyAreas = [
             "California", "CA", "New Mexico", "NM", "Oklahoma", "OK",
@@ -108,6 +108,28 @@ class Data:
         """
         data_process, ## DOCUMENTATION COMING SOON
         """
+
+        def oil_process():
+
+            from algorithms import twh_conversion
+
+            for value in self.oil_data_amt:
+                twh_conversion(float(value))
+
+            # Strip time from date list, append them all to oil_data as a final list
+
+        if self.interactive:
+            prompt = '\n** DATA PROCESS **'
+            prompt += '\nWould you like to process Oil (o) or Earthquake (e) or All (a) data? '
+
+            # input var here
+            # placeholder...
+            user_input = None
+            # ...
+
+            if user_input == 'o':
+                oil_process()
+
         pass
 
     def data_test(self):
@@ -151,6 +173,15 @@ class Data:
         pass
 
 
-mainCall = Data('Oil.csv', 'Earthquakes.csv', None)
-Data.data_load(mainCall)
-Data.data_test(mainCall)
+def app_main(interactive=False):
+    if interactive:
+        main_call = Data('Oil.csv', 'Earthquakes.csv', True)
+        Data.data_load(main_call)
+        Data.data_test(main_call)
+
+    if not interactive:
+        main_call = Data('Oil.csv', 'Earthquakes.csv', False)
+        Data.data_load(main_call)
+
+
+app_main()
