@@ -58,7 +58,6 @@ class Data:
 
         # -- IMPORTS
         import csv
-        from algorithms import twh_conversion
 
         """
         Data Loading Specifics
@@ -103,7 +102,7 @@ class Data:
             for line in reader:
                 if line[1] == 'USA':
                     self.oil_data_date.append(line[2])
-                    self.oil_data_amt.append(twh_conversion(float(line[4])))
+                    self.oil_data_amt.append(line[4])
 
     def data_process(self):
         """
