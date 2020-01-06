@@ -143,6 +143,14 @@ class Data:
         else:
             print('** ERROR: Data not ready for vis')
 
+    def data_visualization(self):
+        """
+        data_visualization; will graph any provided dictionary, ONLY if in the following format:
+        dict_name = {x:[values],y:[values]}
+        Visualization is hardcoded due to matplotlib limitations and in avoidance of over-complication
+        """
+        pass
+
 
 mainCall = Data('Oil.csv', 'Earthquakes.csv', None)
 Data.data_load(mainCall)
