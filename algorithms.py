@@ -97,3 +97,26 @@ def outliers(List, interactive=False):
             pass
 
     return returned_outliers
+
+
+def dict_to_graph(dictionary, title):
+
+    # METHOD IMPORT
+    import matplotlib.pyplot as mpl
+
+    graph_titles = []
+    graph_values = []
+
+    for key, value in dictionary.items():
+        graph_titles.append(key)
+        graph_values.append(value)
+
+    x_graph_title, x_value, y_graph_title, y_value = graph_titles[0], graph_values[0], graph_titles[1], graph_values[1]
+
+    mpl.plot(x_value, y_value)
+    mpl.title(title, fontsize=15)
+    mpl.xlabel(x_graph_title, fontsize=10)
+    mpl.ylabel(y_graph_title, fontsize=10)
+    mpl.tick_params('both', labelsize=7)
+
+    mpl.show()
