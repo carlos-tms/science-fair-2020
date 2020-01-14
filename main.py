@@ -29,10 +29,12 @@ class Data:
         self.interactive = is_interactive
 
         # OIL DATA STORAGE VAR
+        self.oil_data = {}
         self.oil_data_amt = []
         self.oil_data_date = []
 
         # EARTHQUAKE DATA STORAGE VAR
+        self.earth_data = {}
         self.earth_data_mag = []
         self.earth_data_date = []
 
