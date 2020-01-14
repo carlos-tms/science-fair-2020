@@ -118,21 +118,28 @@ class Data:
             for value in self.oil_data_amt:
                 twh_conversion(float(value))
 
+            self.oil_data = {'Amount Produced': self.oil_data_amt, 'Date of Production': self.oil_data_date}
+
             # Strip time from date list, append them all to oil_data as a final list
 
         if self.interactive:
             prompt = '\n** DATA PROCESS **'
             prompt += '\nWould you like to process Oil (o) or Earthquake (e) or All (a) data? '
 
-            # input var here
-            # placeholder...
-            user_input = None
-            # ...
+            try:
+                user_input = raw_input(prompt)
+            except NameError:
+                user_input = input(prompt)
 
             if user_input == 'o':
                 oil_process()
+            elif user_input == 'e':
+                pass
+            elif user_input == 'a':
+                pass
 
-        pass
+        else:
+            oil_process()
 
     def data_test(self):
         """
@@ -172,7 +179,8 @@ class Data:
         dict_name = {x:[values],y:[values]}
         Visualization is hardcoded due to matplotlib limitations and in avoidance of over-complication
         """
-        pass
+        from algorithms import dict_to_graph
+        dict_to_graph(self.oil_data, 'Oil Data')
 
 
 def app_main(interactive=False):
@@ -186,4 +194,9 @@ def app_main(interactive=False):
         Data.data_load(main_call)
 
 
-app_main()
+# app_main()
+main_call = Data('Oil.csv', 'Earthquakes.csv', False)
+Data.data_load(main_call)
+Data.data_process(main_call)
+Data.data_visualization(main_call)
+
