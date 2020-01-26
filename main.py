@@ -115,12 +115,13 @@ class Data:
 
             from algorithms import twh_conversion
 
-            for value in self.oil_data_amt:
-                twh_conversion(float(value))
+            for i in range(0, len(self.oil_data_amt)):
+                self.oil_data_amt[i] = twh_conversion(float(self.oil_data_amt[i]))
 
             self.oil_data = {'Amount Produced': self.oil_data_amt, 'Date of Production': self.oil_data_date}
 
-            # Strip time from date list, append them all to oil_data as a final list
+        def earthquake_process():
+            pass
 
         if self.interactive:
             prompt = '\n** DATA PROCESS **'
@@ -134,12 +135,14 @@ class Data:
             if user_input == 'o':
                 oil_process()
             elif user_input == 'e':
-                pass
+                earthquake_process()
             elif user_input == 'a':
-                pass
+                oil_process()
+                earthquake_process()
 
         else:
             oil_process()
+            earthquake_process()
 
     def data_test(self):
         """
