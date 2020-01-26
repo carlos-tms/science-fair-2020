@@ -105,19 +105,26 @@ def dict_to_graph(dictionary, title):
     # METHOD IMPORT
     import matplotlib.pyplot as mpl
 
-    graph_titles = []
-    graph_values = []
+    graph_titles, graph_values = [], []
 
     for key, value in dictionary.items():
         graph_titles.append(key)
         graph_values.append(value)
 
-    x_graph_title, x_value, y_graph_title, y_value = graph_titles[0], graph_values[0], graph_titles[1], graph_values[1]
+    x_graph_title, x_value, y_graph_title, y_value = graph_titles[1], graph_values[1], graph_titles[0], graph_values[0]
+
+    for y in range(0, len(y_value)):
+        y_value[y] = float(y_value[y])
+
+    for x in range(0, len(x_value)):
+        x_value[x] = float(x_value[x])
 
     mpl.plot(x_value, y_value)
     mpl.title(title, fontsize=15)
-    mpl.xlabel(x_graph_title, fontsize=10)
-    mpl.ylabel(y_graph_title, fontsize=10)
-    mpl.tick_params('both', labelsize=7)
+    mpl.xlabel(x_graph_title, fontsize=12)
+    mpl.ylabel(y_graph_title, fontsize=12)
+    mpl.tick_params('both', labelsize=10)
+    mpl.axis(min(x_value), max(x_value), min(y_value), max(y_value))
+    mpl.ticklabel_format(useOffset=False, style='plain')
 
     mpl.show()
