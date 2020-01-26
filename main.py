@@ -180,7 +180,7 @@ class Data:
         """
         data_visualization; will graph any provided dictionary, ONLY if in the following format:
         dict_name = {x:[values],y:[values]}
-        Visualization is hardcoded due to matplotlib limitations and in avoidance of over-complication
+        Visualization is hardcoded due to MPL limitations and in avoidance of over-complication
         """
         from algorithms import dict_to_graph
         dict_to_graph(self.oil_data, 'Oil Data')
@@ -195,11 +195,7 @@ def app_main(interactive=False):
     if not interactive:
         main_call = Data('Oil.csv', 'Earthquakes.csv', False)
         Data.data_load(main_call)
+        Data.data_visualization(main_call)
 
 
-# app_main()
-main_call = Data('Oil.csv', 'Earthquakes.csv', False)
-Data.data_load(main_call)
-Data.data_process(main_call)
-Data.data_visualization(main_call)
-
+app_main()
