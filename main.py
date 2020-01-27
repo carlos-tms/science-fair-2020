@@ -1,7 +1,7 @@
 
 # --- Main ---
 #
-# Version 1.2 // 1/5/2020
+# Version 2.0 // 1/26/2020
 #
 # By Carlos Miller
 
