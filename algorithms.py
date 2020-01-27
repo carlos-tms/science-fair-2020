@@ -129,11 +129,9 @@ def dict_to_graph(dictionary, title):
     mpl.show()
 
 
-def yearly_amt(pro_list):
+def datetime_fmt(pro_list):
 
-    from collections import Counter
-
-    earth_year, earth_frq, list_of_processed_years = [], [], []
+    list_of_processed_years = []
 
     for item in pro_list:
         new_str = ''
@@ -144,9 +142,34 @@ def yearly_amt(pro_list):
             if len(new_str) == 4:
                 list_of_processed_years.append(new_str)
 
-    counted = Counter(list_of_processed_years)
+    return list_of_processed_years
+
+
+def yearly_amt(pro_list):
+
+    from collections import Counter
+
+    earth_year, earth_frq = [], []
+
+    counted = Counter(datetime_fmt(pro_list))
     for key, value in counted.items():
         earth_frq.append(value)
         earth_year.append(key)
 
     return earth_frq, earth_year
+
+
+def yearly_sev(pro_list_date, pro_list_mag):
+
+    dates = datetime_fmt(pro_list_date)
+    mags = pro_list_mag
+    yearly_severity = {}
+
+    for date, mag in zip(dates, mags):
+        if date in yearly_severity.keys():
+            yearly_severity[date].append(mag)
+        elif date not in yearly_severity.keys():
+            yearly_severity[date] = [mag]
+
+    print(yearly_severity)
+    return yearly_severity
