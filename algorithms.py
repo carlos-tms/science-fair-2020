@@ -129,6 +129,31 @@ def dict_to_graph(dictionary, title):
     mpl.show()
 
 
+def dict_to_box_plot(input_dict, x_title, y_title, title):
+
+    import matplotlib.pyplot as mpl
+
+    data_x = []
+    z = 0
+    for x in range(0, len(input_dict.values())):
+        z += 1
+        data_x.append(z)
+
+    data_x_label = []
+    for x in input_dict.keys():
+        data_x_label.append(int(x))
+
+    data_y = []
+    for x in input_dict.values():
+        data_y.append(x)
+
+    mpl.boxplot(data_y)
+    mpl.xticks(data_x, data_x_label, rotation='vertical')
+    mpl.margins(0.2)
+    mpl.subplots_adjust(bottom=0.15)
+    mpl.show()
+
+
 def datetime_fmt(pro_list):
 
     list_of_processed_years = []
@@ -167,9 +192,8 @@ def yearly_sev(pro_list_date, pro_list_mag):
 
     for date, mag in zip(dates, mags):
         if date in yearly_severity.keys():
-            yearly_severity[date].append(mag)
+            yearly_severity[date].append(float(mag))
         elif date not in yearly_severity.keys():
-            yearly_severity[date] = [mag]
+            yearly_severity[date] = [float(mag)]
 
-    print(yearly_severity)
     return yearly_severity
