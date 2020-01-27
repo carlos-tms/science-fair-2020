@@ -37,6 +37,8 @@ class Data:
         self.earth_data = {}
         self.earth_data_mag = []
         self.earth_data_date = []
+        self.sev1 = {}
+        self.sev2 = {}
 
         # self.earthquakes = {
         #    'new mexico': [],
@@ -121,7 +123,12 @@ class Data:
             self.oil_data = {'Amount Produced': self.oil_data_amt, 'Date of Production': self.oil_data_date}
 
         def earthquake_process():
-            pass
+
+            from algorithms import yearly_amt, yearly_sev
+
+            yearly_amt(self.earth_data_date)
+            self.sev1 = yearly_sev(self.earth_data_date[0:420], self.earth_data_mag[0:420])
+            self.sev2 = yearly_sev(self.earth_data_date[420:], self.earth_data_mag[420:])
 
         if self.interactive:
             prompt = '\n** DATA PROCESS **'
@@ -182,8 +189,10 @@ class Data:
         dict_name = {x:[values],y:[values]}
         Visualization is hardcoded due to MPL limitations and in avoidance of over-complication
         """
-        from algorithms import dict_to_graph
+        from algorithms import dict_to_graph, dict_to_box_plot
         dict_to_graph(self.oil_data, 'Oil Data')
+        dict_to_box_plot(self.sev1, None, None, None)
+        dict_to_box_plot(self.sev2, None, None, None)
 
 
 def app_main(interactive=False):
@@ -195,6 +204,7 @@ def app_main(interactive=False):
     if not interactive:
         main_call = Data('Oil.csv', 'Earthquakes.csv', False)
         Data.data_load(main_call)
+        Data.data_process(main_call)
         Data.data_visualization(main_call)
 
 
