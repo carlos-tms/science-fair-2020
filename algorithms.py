@@ -124,7 +124,29 @@ def dict_to_graph(dictionary, title):
     mpl.xlabel(x_graph_title, fontsize=12)
     mpl.ylabel(y_graph_title, fontsize=12)
     mpl.tick_params('both', labelsize=10)
-    mpl.axis(min(x_value), max(x_value), min(y_value), max(y_value))
     mpl.ticklabel_format(useOffset=False, style='plain')
 
     mpl.show()
+
+
+def yearly_amt(pro_list):
+
+    from collections import Counter
+
+    earth_year, earth_frq, list_of_processed_years = [], [], []
+
+    for item in pro_list:
+        new_str = ''
+        item = list(item)
+        del item[4:]
+        for x in item:
+            new_str = new_str + x
+            if len(new_str) == 4:
+                list_of_processed_years.append(new_str)
+
+    counted = Counter(list_of_processed_years)
+    for key, value in counted.items():
+        earth_frq.append(value)
+        earth_year.append(key)
+
+    return earth_frq, earth_year
