@@ -191,8 +191,8 @@ class Data:
         """
         from algorithms import dict_to_graph, dict_to_box_plot
         dict_to_graph(self.oil_data, 'Oil Data')
-        dict_to_box_plot(self.sev1, None, None, None)
-        dict_to_box_plot(self.sev2, None, None, None)
+        dict_to_box_plot(self.sev1, 'Yearly Severity (1)')
+        dict_to_box_plot(self.sev2, 'Yearly Severity (2)')
 
 
 def app_main(interactive=False):
