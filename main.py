@@ -39,6 +39,7 @@ class Data:
         self.earth_data_date = []
         self.sev1 = {}
         self.sev2 = {}
+        self.yearly_amount = {}
 
         # self.earthquakes = {
         #    'new mexico': [],
@@ -126,7 +127,7 @@ class Data:
 
             from algorithms import yearly_amt, yearly_sev
 
-            yearly_amt(self.earth_data_date)
+            self.yearly_amount = yearly_amt(self.earth_data_date)
             self.sev1 = yearly_sev(self.earth_data_date[0:420], self.earth_data_mag[0:420])
             self.sev2 = yearly_sev(self.earth_data_date[420:], self.earth_data_mag[420:])
 
@@ -190,9 +191,10 @@ class Data:
         Visualization is hardcoded due to MPL limitations and in avoidance of over-complication
         """
         from algorithms import dict_to_graph, dict_to_box_plot
-        dict_to_graph(self.oil_data, 'Oil Data')
+        dict_to_graph(self.oil_data, 'Annual Oil Production')
         dict_to_box_plot(self.sev1, 'Yearly Severity (1)')
         dict_to_box_plot(self.sev2, 'Yearly Severity (2)')
+        dict_to_graph(self.yearly_amount, 'Annual Earthquake Amount')
 
 
 def app_main(interactive=False):
