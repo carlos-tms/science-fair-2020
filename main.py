@@ -128,6 +128,11 @@ class Data:
             from algorithms import yearly_amt, yearly_sev
 
             self.yearly_amount = yearly_amt(self.earth_data_date)
+
+            for year, amount in self.yearly_amount.items():
+                for x in amount:
+                    self.yearly_amount[year] = x
+
             self.sev1 = yearly_sev(self.earth_data_date[0:420], self.earth_data_mag[0:420])
             self.sev2 = yearly_sev(self.earth_data_date[420:], self.earth_data_mag[420:])
 
@@ -194,7 +199,7 @@ class Data:
         dict_to_graph(self.oil_data, 'Annual Oil Production')
         dict_to_box_plot(self.sev1, 'Yearly Severity (1)')
         dict_to_box_plot(self.sev2, 'Yearly Severity (2)')
-        dict_to_graph(self.yearly_amount, 'Annual Earthquake Amount')
+        dict_to_graph(self.yearly_amount, 'Annual Earthquake Amount', 'Year', 'Earthquakes')
 
 
 def app_main(interactive=False):
