@@ -126,11 +126,11 @@ def dict_to_graph(dictionary, title, x_title=None, y_title=None):
         x_graph_title, x_value = graph_titles[1], graph_values[1]
         y_graph_title, y_value = graph_titles[0], graph_values[0]
 
-        for y in range(0, len(y_value)):
-            y_value[y] = float(y_value[y])
+    for y in range(0, len(y_value)):
+        y_value[y] = float(y_value[y])
 
-        for x in range(0, len(x_value)):
-            x_value[x] = float(x_value[x])
+    for x in range(0, len(x_value)):
+        x_value[x] = float(x_value[x])
 
     mpl.plot(x_value, y_value)
     mpl.title(title, fontsize=15)
