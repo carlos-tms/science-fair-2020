@@ -100,24 +100,37 @@ def outliers(List, interactive=False):
     return returned_outliers
 
 
-def dict_to_graph(dictionary, title):
+def dict_to_graph(dictionary, title, x_title=None, y_title=None):
 
     # METHOD IMPORT
     import matplotlib.pyplot as mpl
 
-    graph_titles, graph_values = [], []
+    x_value, y_value = [], []
 
-    for key, value in dictionary.items():
-        graph_titles.append(key)
-        graph_values.append(value)
+    if x_title is not None and y_title is not None:
+        x_graph_title = x_title
+        y_graph_title = y_title
 
-    x_graph_title, x_value, y_graph_title, y_value = graph_titles[1], graph_values[1], graph_titles[0], graph_values[0]
+        for year, data in dictionary.items():
+            x_value.append(year)
+            y_value.append(data)
 
-    for y in range(0, len(y_value)):
-        y_value[y] = float(y_value[y])
+    else:
 
-    for x in range(0, len(x_value)):
-        x_value[x] = float(x_value[x])
+        graph_titles, graph_values = [], []
+
+        for key, value in dictionary.items():
+            graph_titles.append(key)
+            graph_values.append(value)
+
+        x_graph_title, x_value = graph_titles[1], graph_values[1]
+        y_graph_title, y_value = graph_titles[0], graph_values[0]
+
+        for y in range(0, len(y_value)):
+            y_value[y] = float(y_value[y])
+
+        for x in range(0, len(x_value)):
+            x_value[x] = float(x_value[x])
 
     mpl.plot(x_value, y_value)
     mpl.title(title, fontsize=15)
