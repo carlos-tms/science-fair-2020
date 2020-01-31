@@ -148,7 +148,7 @@ def dict_to_graph(dictionary, title, x_title=None, y_title=None):
     mpl.show()
 
 
-def dict_to_box_plot(input_dict, title):
+def dict_to_box_plot(input_dict, title, xtitle, ytitle):
 
     import matplotlib.pyplot as mpl
 
@@ -168,6 +168,8 @@ def dict_to_box_plot(input_dict, title):
 
     mpl.boxplot(data_y)
     mpl.title(title, fontsize=15)
+    mpl.ylabel(ytitle, fontsize=10)
+    mpl.xlabel(xtitle, fontsize=10)
     mpl.xticks(data_x, data_x_label, rotation='vertical')
     mpl.margins(0.2)
     mpl.subplots_adjust(bottom=0.15)

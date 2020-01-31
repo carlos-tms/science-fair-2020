@@ -197,8 +197,8 @@ class Data:
         """
         from algorithms import dict_to_graph, dict_to_box_plot
         dict_to_graph(self.oil_data, 'Annual Oil Production')
-        dict_to_box_plot(self.sev1, 'Yearly Severity (1)')
-        dict_to_box_plot(self.sev2, 'Yearly Severity (2)')
+        dict_to_box_plot(self.sev1, 'Yearly Severity (1)', 'Year', 'Magnitude')
+        dict_to_box_plot(self.sev2, 'Yearly Severity (2)', 'Year', 'Magnitude')
         dict_to_graph(self.yearly_amount, 'Annual Earthquake Amount', 'Year', 'Earthquakes')
 
 
