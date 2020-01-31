@@ -223,3 +223,13 @@ def yearly_sev(pro_list_date, pro_list_mag):
             yearly_severity[date] = [float(mag)]
 
     return yearly_severity
+
+
+def list_half(pro_list):
+    x = len(pro_list)
+    y = x/2
+
+    if y is float:
+        round(y)
+
+    return y
