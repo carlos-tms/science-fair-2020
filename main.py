@@ -125,7 +125,7 @@ class Data:
 
         def earthquake_process():
 
-            from algorithms import yearly_amt, yearly_sev
+            from algorithms import yearly_amt, yearly_sev, list_half
 
             self.yearly_amount = yearly_amt(self.earth_data_date)
 
@@ -133,8 +133,11 @@ class Data:
                 for x in amount:
                     self.yearly_amount[year] = x
 
-            self.sev1 = yearly_sev(self.earth_data_date[0:420], self.earth_data_mag[0:420])
-            self.sev2 = yearly_sev(self.earth_data_date[420:], self.earth_data_mag[420:])
+            LH1 = list_half(self.earth_data_date)
+            LH2 = list_half(self.earth_data_mag)
+
+            self.sev1 = yearly_sev(self.earth_data_date[0:LH1], self.earth_data_mag[0:LH2])
+            self.sev2 = yearly_sev(self.earth_data_date[LH1:], self.earth_data_mag[LH2:])
 
         if self.interactive:
             prompt = '\n** DATA PROCESS **'
