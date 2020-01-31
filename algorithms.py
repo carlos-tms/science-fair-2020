@@ -231,6 +231,7 @@ def list_half(pro_list):
 
     if y is float:
         round(y)
-        y = int(y)
+
+    y = int(y)
 
     return y
